@@ -1,0 +1,13 @@
+<button (click)="prevFn(videoArray.prevPageToken)" *ngIf="videoArray.prevPageToken">Prev</button>
+<button (click)="nextFn(videoArray.nextPageToken)" *ngIf="videoArray.nextPageToken">Next</button>
+    <table class="table">
+      <tr *ngFor="let item of videoArray.items">
+        <td>
+          <youtube-player [videoId]="item.id.videoId"></youtube-player>
+        </td>
+      </tr>
+    </table>
+    <button (click)="prevFn(videoArray.prevPageToken)" *ngIf="videoArray.prevPageToken">Prev</button>
+    <button (click)="nextFn(videoArray.nextPageToken)" *ngIf="videoArray.nextPageToken">Next</button>
+
+

@@ -1,0 +1,51 @@
+<!-- <ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.courtFee}}
+  </li>
+</ul>
+
+<button (click)="addData()">Add data</button> -->
+
+<!-- <ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="timer"></ngx-spinner> -->
+<div class="app-main">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="app-ranger">Ranger Shuttlers</h1>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-sidenav-container">
+    <mat-sidenav #snav >
+      <mat-nav-list>
+        <div class="brand"><img src="./assets/icons/icon-96x96.png" alt=""></div>
+        <a mat-list-item (click)="closeMenu()" [routerLink]="['/home']" routerLinkActive="active"><i class="material-icons">home</i> Home</a>
+        <a mat-list-item (click)="closeMenu()" [routerLink]="['/share']" routerLinkActive="active">
+          <i class="material-icons">
+              add_to_queue </i> Add court share</a>
+        <a mat-list-item (click)="closeMenu()" [routerLink]="['/people']" routerLinkActive="active">
+          <i class="material-icons">
+            supervisor_account
+            </i>Add people</a>
+            <a mat-list-item (click)="closeMenu()" [routerLink]="['/tournaments']" routerLinkActive="active">
+              <i class="material-icons">
+                dashboard
+                </i>Tournaments</a>
+
+        <a mat-list-item (click)="closeMenu()" [routerLink]="['/videos']" routerLinkActive="active">
+            <i class="material-icons"> play_circle_filled </i> Videos
+        </a>
+        <a mat-list-item routerLinkActive="active" (click)="logout()"> <i class="material-icons">play_circle_filled </i> Logout</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="container mt20">
+        
+          <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

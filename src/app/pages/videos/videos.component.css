@@ -1,0 +1,9 @@
+.table td, .table th{
+  padding: 0px;
+}
+.table td iframe{
+  width: 100% !important;
+}
+.table{
+  width:90%;
+}

@@ -1,0 +1,31 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>Amount: <span class="text-muted">₹ {{shareDatas.totalAmount}}</span></mat-grid-tile>
+    <mat-grid-tile>{{ whenDate.toDate() | date: 'mediumDate'}}</mat-grid-tile>
+  </mat-grid-list>
+
+
+<span *ngFor="let o of shareDatas.whoPlayed"></span><br>
+<div mat-dialog-content>
+    <table class="table table-stripped">
+        <tr>
+            <th>Players</th>
+            <th>Court</th>
+            <th>Shuttle</th>
+            <th>Share</th>
+        </tr>
+        <tr *ngFor="let item of shareDatas.shareSheet">
+            <td>
+                <div *ngFor="let name of shareDatas.people">
+                    {{item.id == name.id ? name.name : ''}}
+                </div>
+            </td>
+            <td>{{item.court | number: '1.1-1'}}</td>
+            <td>{{item.shuttle | number: '1.1-1'}}</td>
+            <td>{{item.played | number: '1.1-1'}}</td>
+        </tr>
+    </table>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</div>

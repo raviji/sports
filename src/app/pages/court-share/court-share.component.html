@@ -1,0 +1,110 @@
+
+
+<div class="row justify-content-center">
+  <div class="col-10">
+      <form [formGroup]="addShareForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <mat-form-field class="full-width">
+                  <input matInput [matDatepicker]="picker"  (dateChange)="compareDate($event)"  placeholder="Choose a date" formControlName="when">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div *ngIf="submitted && f.when.errors" class="invalid-feedback">
+                  <div *ngIf="f.when.errors.required">Date is required</div>
+                </div>
+
+          </div>
+          <div *ngIf="existDate" class="form-group red" >
+              {{checkExistingMsg}}
+          </div>
+          <div class="form-group">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Who played" formControlName="whoPlayed" multiple>
+                  <mat-option *ngFor="let item of people" [value]="item.id">
+                    {{item.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <div *ngIf="submitted && f.whoPlayed.errors" class="invalid-feedback">
+                <div *ngIf="f.whoPlayed.errors.required">Court Paid By is required</div>
+            </div>
+        </div>
+          <div class="form-group">
+              <mat-form-field class="full-width">
+                <input type="number" matInput placeholder="Court fee" formControlName="courtFee">
+                <span matPrefix>&#8377; &nbsp;</span>
+                <span matSuffix>.00</span>
+              </mat-form-field>
+              <div *ngIf="submitted && f.courtFee.errors" class="invalid-feedback">
+                <div *ngIf="f.courtFee.errors.required">Court Fee is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <mat-form-field class="full-width">
+                  <mat-select placeholder="Court paid by" formControlName="courtPaidBy">
+                    <mat-option *ngFor="let item of people" [value]="item.id">
+                      {{item.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <div *ngIf="submitted && f.courtPaidBy.errors" class="invalid-feedback">
+                  <div *ngIf="f.courtPaidBy.errors.required">Court Paid By is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <mat-form-field class="full-width">
+                <input type="number" matInput placeholder="Shuttlecock cost" formControlName="shuttleCost">
+                <span matPrefix>&#8377; &nbsp;</span>
+                <span matSuffix>.00</span>
+              </mat-form-field>
+              <div *ngIf="submitted && f.shuttleCost.errors" class="invalid-feedback">
+                <div *ngIf="f.shuttleCost.errors.required">Shuttle Cost is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <mat-form-field class="full-width">
+                  <mat-select placeholder="Shuttlecock paid by" formControlName="shuttleTookBy">
+                    <mat-option *ngFor="let item of people" [value]="item.id">
+                      {{item.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <div *ngIf="submitted && f.shuttleTookBy.errors" class="invalid-feedback">
+                  <div *ngIf="f.shuttleTookBy.errors.required">Shuttle Took By is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <section class="example-section">
+              <mat-checkbox formControlName="extraHours">Extra hours if any?</mat-checkbox>
+            </section>
+          </div>
+          <div class="form-group" *ngIf="addShareForm.value.extraHours">
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <input type="number" matInput placeholder="Extra hour(s) amount" formControlName="extraCourtFee">
+                  <span matPrefix>&#8377; &nbsp;</span>
+                  <span matSuffix>.00</span>
+                </mat-form-field>
+                <div *ngIf="submitted && f.extraCourtFee.errors" class="invalid-feedback">
+                  <div *ngIf="f.extraCourtFee.errors.required">Court Fee is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Who played" formControlName="extraWhoPlayed" multiple>
+                      <mat-option *ngFor="let item of people" [value]="item.id">
+                        {{item.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <div *ngIf="submitted && f.extraWhoPlayed.errors" class="invalid-feedback">
+                    <div *ngIf="f.extraWhoPlayed.errors.required">Court Paid By is required</div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <button class="btn btn-primary">Register</button>
+          </div>
+      </form>
+  </div>
+</div>

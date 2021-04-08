@@ -1,0 +1,64 @@
+<div mat-dialog-content *ngIf="sum">
+  <table class="table table-striped table-dark dashboard_table">
+    <tr>
+      <th>Players</th>
+      <th>Paid Total</th>
+      <th>Played Total</th>
+      <th>To Pay / Get</th>
+    </tr>
+    <tr *ngFor="let item of sum">
+      <td>
+        <div *ngFor="let name of peopleList">
+          {{item.id == name.id ? name.name:''}}
+        </div>
+      </td>
+      <td>&#8377; {{item.totalPaid | number: '1.1-1'}}</td>
+      <td>&#8377; {{item.totalPlayed | number:'1.1-1'}}</td>
+      <td [ngClass]="item.toPay >= 0 ? 'postive':'negative'">&#8377; {{item.toPay | number:'1.1-1'}}</td>
+    </tr>
+
+  </table>
+</div>
+ 
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="when">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.when.toDate() | date: 'mediumDate':'asc'}} </td>
+    </ng-container>
+
+    <!-- courtFee Column -->
+    <ng-container matColumnDef="courtFee">
+      <th mat-header-cell *matHeaderCellDef> courtFee </th>
+      <td mat-cell *matCellDef="let element"> {{element.courtFee}} </td>
+    </ng-container>
+
+    <!-- shuttleCost Column -->
+    <ng-container matColumnDef="shuttleCost">
+      <th mat-header-cell *matHeaderCellDef> shuttleCost </th>
+      <td mat-cell *matCellDef="let element"> {{element.shuttleCost}} </td>
+    </ng-container>
+
+    <!-- totalAmount Column -->
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef> totalAmount </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalAmount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="showPop(element)">More</button>
+        <button *ngIf="deleteRecord" mat-raised-button (click)="delete(element)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
