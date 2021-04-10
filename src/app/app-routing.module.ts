@@ -40,7 +40,7 @@ const belongsToAccount = (next) => hasCustomClaim(`account-${next.params.id}`);
           component: CourtShareComponent,
           // canActivate: [AngularFireAuthGuard]
       },
-      { path: 'login', component: LoginComponent 
+      { path: 'login', component: LoginComponent
       },
       {
         path: 'players',

@@ -32,6 +32,6 @@ export class AuthService {
   logout() {
     this.afAuth.signOut();
     this.authInfo$.next(AuthService.UNKNOWN_USER);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 }

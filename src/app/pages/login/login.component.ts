@@ -24,21 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.router.navigate['home'];
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then( (res) => {
+      this.router.navigate(['/home']);
+    });    
   }
   logout() {
     this.auth.signOut();
   }
-
-/*   login() {
-    this.authService.doGoogleLogin()
-    .then( (res) => {
-      console.log(res);
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
-  } */
-
 }

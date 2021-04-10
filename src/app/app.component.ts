@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatSidenav} from '@angular/material/sidenav';
 import { User } from './class/user';
+import { AuthService } from './core/security/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   constructor(public _data: AngularFirestore,
     public ar: ActivatedRoute,
     private _router: Router,
+    public auth: AuthService,
     private route: ActivatedRoute) {
     this.items = _data.collection('share').valueChanges();
     
@@ -47,7 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    // this.auth.logout();
+    this.auth.logout();
   }
 
 }
